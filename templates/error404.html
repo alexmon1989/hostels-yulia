@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">404 ошибка</h1>
+        </div><!--/container-->
+    </div>
+
+    <div class="container content">
+        <!--Error Block-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="error-v1">
+                    <span class="error-v1-title">404</span>
+                    <span>Страница не найдена!</span>
+                    <p>Страница по указанному URL не найдена на этом сервере.</p>
+                    <a class="btn-u btn-bordered" href="{% url 'home' %}">Назад на главную</a>
+                </div>
+            </div>
+        </div>
+        <!--End Error Block-->
+    </div>
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'assets/css/pages/page_404_error.css' %}">
+{% endblock %}

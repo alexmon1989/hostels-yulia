@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load seo %}
+{% load recaptcha2 %}
+{% get_metadata as my_meta %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">
+                {% if my_meta.heading.value %}
+                    {{ my_meta.heading.value }}
+                {% else %}
+                    Отзывы
+                {% endif %}
+            </h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li class="active">Отзывы</li>
+            </ul>
+        </div><!--/container-->
+    </div>
+
+    <div class="container content-sm no-margin-bottom">
+        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-30">
+            <h2>Что люди говорят о нас</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+            <p>Мы имеем множество довольных клиентов, можете убедиться в этом, почитав отзывы ниже. А также оставляйте свои отзывы!</p>
+        </div><!--/Headline Center v2-->
+
+        <!-- Testimonials Wrap -->
+        <div class="testimonials-v6 testimonials-wrap">
+            <div class="row" id="mywrap">
+                {% for feedback in feedback_list %}
+                    <div class="col-md-6 margin-bottom-30">
+                        <div class="testimonials-info rounded-bottom bg-color-light">
+                            {% if feedback.image %}
+                                <img class="rounded-x" src="{{ feedback.image.url }}" alt="">
+                            {% else %}
+                                <img class="rounded-x" src="{% static 'assets/img/testimonials/user.jpg' %}" alt="">
+                            {% endif %}
+                            <div class="testimonials-desc">
+                                <p>{{ feedback.text }}</p>
+                                <strong>{{ feedback.client_name }}</strong>
+                                {% if feedback.position %}
+                                <span>{{ feedback.position }}</span>
+                                {% else %}
+                                <span>Должность не указана</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div><!--/end row-->
+        </div>
+        <!-- End Testimonials Wrap -->
+    </div>
+
+    {% if is_paginated %}
+        <div class="container content-sm">
+            <ul class="pager pager-v3 pager-md no-margin-bottom">
+                {% if page_obj.has_previous %}
+                    <li class="previous"><a href="?page={{ page_obj.previous_page_number }}">← Старее</a></li>
+                {% endif %}
+
+                <li class="page-amount">{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</li>
+
+                {% if page_obj.has_next %}
+                    <li class="next"><a href="?page={{ page_obj.next_page_number }}">Новее →</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="container margin-bottom-50">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="" method="post" id="feedback-form" class="sky-form" enctype="multipart/form-data">
+                    <header>Оставить отзыв</header>
+
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-4">
+                                <label class="label">Ваше имя*</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-user"></i>
+                                    <input name="client_name" type="text">
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="label">Должность (кем работаете)</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-id-card"></i>
+                                    <input name="position" type="text">
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="label">Фото</label>
+                                <label for="image" class="input input-file">
+									<div class="button"><input id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value" type="file">Выбрать</div><input readonly="" type="text">
+								</label>
+                            </section>
+                        </div>
+
+                        <section>
+                            <label class="label">Текст отзыва*</label>
+                            <label class="textarea">
+                                <i class="icon-append fa fa-comment"></i>
+                                <textarea rows="4" name="text"></textarea>
+                            </label>
+                        </section>
+
+                        <section>
+                            <div id='recaptcha'></div>
+                            <div class="recaptcha-errors"></div>
+                        </section>
+
+                        <script>
+                            django_recaptcha_callbacks.push(function() {
+                                grecaptcha.render('recaptcha', {
+                                    'sitekey': '{% recaptcha_key %}'
+                                })
+                            });
+                        </script>
+                    </fieldset>
+
+                    <footer>
+                        <button type="submit" name="submit" class="button">Добавить отзыв</button>
+                    </footer>
+
+                    <div class="message">
+                        <i class="rounded-x fa fa-check"></i>
+                        <p>Ваш отзыв добавлен. После прохождения модерации он будет отображён на сайте.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'assets/plugins/masonry/jquery.masonry.min.js' %}"></script>
+	<script src="{% static 'assets/js/forms/feedback.js' %}"></script>
+
+    <script type="text/javascript">
+		jQuery(document).ready(function() {
+			FeedbackForm.initFeedbackForm();
+
+			$('#mywrap').masonry({
+                itemSelector : '.col-md-6'
+            });
+		});
+	</script>
+{% endblock %}

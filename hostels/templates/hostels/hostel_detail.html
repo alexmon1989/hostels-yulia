@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load seo %}
+{% get_metadata as my_meta %}
+
+{% block content %}
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">
+                {% if my_meta.heading.value %}
+                    {{ my_meta.heading.value }}
+                {% else %}
+                    {{ hostel.title }}
+                {% endif %}
+            </h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li>Наши хостелы</li>
+                <li class="active">{{ hostel.title }}</li>
+            </ul>
+        </div><!--/container-->
+    </div>
+
+    <div class="container content-sm">
+        <div class="headline-center-v2 headline-center-v2-dark">
+            <h2>О хостеле</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+        </div><!--/Headline Center v2-->
+
+        <div class="row">
+            <div class="col-md-12 hostel-description">
+                {{ hostel.full_description|safe }}
+            </div>
+        </div><!--/end row-->
+    </div>
+
+    <div class="container">
+        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-60">
+            <h2>Условия / услуги</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+            <p class="font-bold">К вашим услугам предоставлены максимально комфортные условия пребывания в нашем хостеле</p>
+        </div><!--/Headline Center v2-->
+
+        {% for service in hostel.services.all %}
+            {% if forloop.first %}
+                <div class="row margin-bottom-60">
+            {% endif %}
+            {% if not forloop.first and forloop.counter0|divisibleby:"3" %}
+                {% if forloop.counter0 < hostel.services.all.count|add:"-3" %}
+                    <div class="row margin-bottom-60">
+                {% else %}
+                    <div class="row">
+                {% endif %}
+            {% endif %}
+                    <div class="col-sm-4">
+                        <div class="service-block-v1 md-margin-bottom-50">
+                            <i class="rounded-x {{ service.icon }}"></i>
+                            <h3 class="title-v3-bg text-uppercase">{{ service.title }}</h3>
+                            <p>{{ service.description }}</p>
+                        </div>
+                    </div>
+            {% if not forloop.first and forloop.counter0|add:"1"|divisibleby:"3" or forloop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="container content-sm">
+        <div class="headline-center-v2 headline-center-v2-dark">
+            <h2>Цены</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+        </div><!--/Headline Center v2-->
+
+        <div class="row no-space-pricing pricing-zoom">
+            {% for price in hostel.price_set.all %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="pricing">
+                        <div class="pricing-head">
+                            <h3>{{ price.title }}</h3>
+                            <h4>{{ price.value }}<i>.00 грн</i></h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="headline-center-v2 headline-center-v2-dark">
+            <h2>Фотографии</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+        </div><!--/Headline Center v2-->
+
+        <div class="row">
+            <div class="col-md-12">
+                {% for photo in hostel.photo_set.all %}
+                    {% if forloop.first %}
+                        <div class="row margin-bottom-30">
+                    {% endif %}
+                    {% if not forloop.first and forloop.counter0|divisibleby:"3" %}
+                        {% if forloop.counter0 < hostel.photo_set.all.count|add:"-3" %}
+                            <div class="row margin-bottom-30">
+                        {% else %}
+                            <div class="row">
+                        {% endif %}
+                    {% endif %}
+                                <div class="col-sm-4 sm-margin-bottom-30">
+                                    <a href="{{ photo.image.url }}" rel="gallery1" class="fancybox img-hover-v1" title="{{ photo.title }}">
+                                        <span><img class="img-responsive" src="{{ photo.image.url }}" alt=""></span>
+                                    </a>
+                                </div>
+                    {% if not forloop.first and forloop.counter0|add:"1"|divisibleby:"3" or forloop.last %}
+                            </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div><!--/end row-->
+    </div>
+
+    <div class="container content-sm">
+        <div class="headline-center-v2 headline-center-v2-dark">
+            <h2>Как к нам доехать</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+        </div><!--/Headline Center v2-->
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ hostel.code_google_maps|safe }}
+                {{ hostel.address|safe }}
+            </div>
+        </div><!--/end row-->
+    </div>
+
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'assets/plugins/fancybox/source/jquery.fancybox.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/pages/page_pricing.css' %}">
+{% endblock %}
+
+{% block scripts %}
+	<script type="text/javascript" src="{% static 'assets/plugins/fancybox/source/jquery.fancybox.pack.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/fancy-box.js' %}"></script>
+    <script type="text/javascript">
+		jQuery(document).ready(function() {
+			FancyBox.initFancybox();
+		});
+	</script>
+{% endblock %}

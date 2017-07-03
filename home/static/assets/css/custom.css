@@ -1,0 +1,135 @@
+.revolution-mch-1:after {
+    background: rgba(0,0,0,0.1);
+}
+
+.testimonials-v4 .testimonials-author em {
+    text-transform: none;
+}
+
+.header .navbar-toggle,
+.header .navbar-toggle:hover,
+.header .navbar-toggle:focus {
+	background: #09a047;
+}
+
+.header .navbar-nav > .active > a {
+	color: #09a047;
+}
+/*--------------------------------------------------
+    [3. Header - Responsive Navbar Style]
+----------------------------------------------------*/
+
+/*Responsive Navbar*/
+@media (max-width: 991px) {
+	.header .navbar-nav > li > a:hover {
+		color: #09a047;
+	}
+
+	.header .navbar-nav > .active > a,
+	.header .navbar-nav > .active > a:hover,
+	.header .navbar-nav > .active > a:focus {
+		background: #09a047;
+	}
+}
+
+@media (min-width: 992px) {
+	.header .navbar-nav > li > a:hover,
+	.header .navbar-nav > .active > a {
+		border-bottom: solid 2px #09a047;
+	}
+
+	.header .navbar-nav > .open > a,
+	.header .navbar-nav > .open > a:hover,
+	.header .navbar-nav > .open > a:focus {
+		color: #09a047;
+	}
+
+	.header .navbar-nav > li:hover > a {
+        color: #09a047;
+    }
+
+	/*Dropdown Menu*/
+	.header .dropdown-menu {
+		border-top: solid 2px #09a047;
+	}
+}
+
+@media (max-width: 991px) {
+	.header.header-dark .navbar-nav .dropdown > a:hover {
+		color: #09a047;
+	}
+
+}
+
+@media (min-width: 992px) {
+	.header.header-dark .navbar-nav > li > a:hover,
+	.header.header-dark .navbar-nav > .active > a {
+		color: #09a047 !important;
+	}
+}
+
+.content-boxes-v6:hover i {
+	background: #09a047;
+}
+
+.content-boxes-v6:hover i:after {
+	border-color: #09a047;
+}
+
+.thumbnails-v1 .read-more {
+    color: #09a047;
+}
+
+.headline h2, .headline h3, .headline h4 {
+    border-bottom: 2px solid #09a047;
+}
+
+a {
+    color: #09a047;
+}
+
+.pricing-head h3 {
+    background: #09a047 none repeat scroll 0 0;
+}
+
+.pricing:hover h4 {
+	color:#09a047;
+}
+
+.service-block-v1 i {
+    background: #09a047 none repeat scroll 0 0;
+}
+
+.breadcrumb li.active, .breadcrumb li a:hover {
+    color: #09a047;
+}
+
+.sky-form .button {
+    background: #09a047;
+}
+
+.btn-u {
+    background: #09a047 none repeat scroll 0 0;
+}
+
+.btn-u:hover,
+.btn-u:focus,
+.btn-u:active,
+.btn-u.active,
+.open .dropdown-toggle.btn-u {
+	background: #098E51;
+}
+
+.hostel-description {
+	font-size:14px;
+}
+
+.sky-form .recaptcha-errors em {
+    color: #ee9393;
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+    line-height: 15px;
+    margin-top: 6px;
+    padding: 0 1px;
+}

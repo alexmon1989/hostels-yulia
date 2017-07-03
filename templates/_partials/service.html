@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<div class="container content-sm">
+    <div class="row">
+        {% for service in services %}
+            <div class="col-md-4 content-boxes-v6 md-margin-bottom-50">
+                <i class="rounded-x {{ service.icon }}" aria-hidden="true"></i>
+                <h2 class="title-v3-md text-uppercase margin-bottom-10">{{ service.title }}</h2>
+                <p>{{ service.description }}</p>
+            </div>
+        {% endfor %}
+    </div><!--/row-->
+</div><!--/container-->

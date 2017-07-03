@@ -1,0 +1,69 @@
+{% load recaptcha2 %}
+<!-- Boooking modal -->
+<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{% url 'booking:create_booking' %}" method="post" id="booking-form" class="sky-form" novalidate="novalidate">
+            <header>Забронировать <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></header>
+
+            <fieldset>
+                <p class="lead">Отправьте нам свои данные и мы свяжемся с вами для уточнения деталей</p>
+
+                <section>
+                    <label class="label">Имя</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-user"></i>
+                        <input name="name" id="name" type="text">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">Телефон</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-phone"></i>
+                        <input name="telephone" id="telephone" type="tel">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">Email</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-envelope-o"></i>
+                        <input name="email" id="email" type="email">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">Сообщение</label>
+                    <label class="textarea">
+                        <i class="icon-append fa fa-comment"></i>
+                        <textarea rows="4" name="message" id="message"></textarea>
+                    </label>
+                </section>
+
+                <section>
+                    <div id='recaptcha_booking'></div>
+                    <div class="recaptcha-errors"></div>
+                </section>
+
+                <script>
+                    django_recaptcha_callbacks.push(function() {
+                        grecaptcha.render('recaptcha_booking', {
+                            'sitekey': '{% recaptcha_key %}'
+                        })
+                    });
+                </script>
+            </fieldset>
+
+            <footer class="text-right">
+                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn-u">Отправить</button>
+            </footer>
+
+            <div class="message">
+                <i class="rounded-x fa fa-check"></i>
+                <p>Ваши данные успешно отправлены!</p>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Booking modal -->

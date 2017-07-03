@@ -1,0 +1,49 @@
+{% load staticfiles %}
+{% load home_extras %}
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About -->
+                <div class="col-md-4 md-margin-bottom-40">
+                    <a href="{% url 'home' %}"><img id="logo-footer" class="footer-logo" src="{% static 'assets/img/logo2-default.png' %}" alt=""></a>
+                    {% footer_text %}
+                </div><!--/col-md-3-->
+                <!-- End About -->
+
+                <!-- Link List -->
+                <div class="col-md-4 md-margin-bottom-40">
+                    <div class="headline"><h2>Меню</h2></div>
+                    <ul class="list-unstyled link-list">
+                        <li><a href="{% url 'news:news_index' %}">Новости</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{% url 'prices:prices_index' %}">Цены</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{% url 'feedbacks:feedback_index' %}">Отзывы</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{% url 'contacts:contacts_index' %}">Контакты</a><i class="fa fa-angle-right"></i></li>
+                    </ul>
+                </div><!--/col-md-3-->
+                <!-- End Link List -->
+
+                <!-- Address -->
+                <div class="col-md-4 map-img md-margin-bottom-40">
+                    <div class="headline"><h2>Наши телефоны</h2></div>
+                    <address class="md-margin-bottom-40">
+                        {% footer_telephones %}
+                    </address>
+                </div><!--/col-md-3-->
+                <!-- End Address -->
+            </div>
+        </div>
+    </div><!--/footer-->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        2017 &copy; Все права защищены.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><!--/copyright-->
+</div>

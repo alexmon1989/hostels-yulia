@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load seo %}
+{% get_metadata as my_meta %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">
+                <h1 class="pull-left">
+                    {% if my_meta.heading.value %}
+                        {{ my_meta.heading.value }}
+                    {% else %}
+                        {{ news.title }}
+                    {% endif %}
+                </h1>
+            </h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'news:news_index' %}">Новости</a></li>
+                <li class="active">{{ news.title }}</li>
+            </ul>
+        </div><!--/container-->
+    </div>
+
+    <div class="bg-color-light">
+        <div class="container content-sm">
+            <div class="news-v3 bg-color-white margin-bottom-30">
+                {% if news.image %}
+                    <img class="img-responsive full-width" src="{{ news.image.url }}" alt="">
+                {% endif %}
+                <div class="news-v3-in">
+                    <ul class="list-inline posted-info">
+                        <li>Создано {{ news.created_at }}</li>
+                    </ul>
+                    <h2>{{ news.title }}</h2>
+                    {{ news.full_text|safe }}
+                </div>
+            </div>
+
+            <div class="row news-v2 margin-bottom-50">
+                {% for item in another_news %}
+                <div class="col-sm-4 sm-margin-bottom-30">
+                    <div class="news-v2-badge">
+                        {% if item.image %}
+                            <img class="img-responsive" src="{{ item.image.url }}" alt="">
+                        {% else %}
+                            <img class="img-responsive" src="http://via.placeholder.com/360x228?text=hostel-yulia.com.ua" alt="">
+                        {% endif %}
+                        <p>
+                            <span>{{ item.created_at|date:"d" }}</span>
+                            <small>{{ item.created_at|date:"F" }}</small>
+                        </p>
+                    </div>
+                    <div class="news-v2-desc">
+                        <h3><a href="{% url 'news:news_detail' pk=item.pk %}">{{ item.title }}</a></h3>
+                        <p>{{ item.short_text| truncatewords_html:20 | safe }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

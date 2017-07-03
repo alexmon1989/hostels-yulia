@@ -1,0 +1,132 @@
+{% load staticfiles %}
+{% load seo %}
+{% load recaptcha2 %}
+{% get_metadata as my_meta %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="ru" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ru" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
+<head>
+    <title>{% if my_meta.title.value %}{{ my_meta.title.value }}{% else %}Сеть хостелов в Киеве | hostels-yulia.kiev.ua{% endif %}</title>
+
+    {% recaptcha_explicit_support %}
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% if my_meta.description.value %}{{ my_meta.description.value }}{% endif %}" />
+    <meta name="keywords" content="{% if my_meta.keywords.value %}{{ my_meta.keywords.value }}{% endif %}" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/plugins/revolution-slider/rs-plugin/css/settings.css' %}" type="text/css" media="screen">
+	<!--[if lt IE 9]><link rel="stylesheet" href="{% static 'assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css' %}" type="text/css" media="screen"><![endif]-->
+    <link rel="stylesheet" href="{% static 'assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css' %}">
+
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+
+	<link rel="stylesheet" href="{% static 'assets/css/app.css' %}">
+
+    {% block styles %}
+    {% endblock %}
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+</head>
+
+<body>
+	<div class="wrapper page-option-v1">
+		<!--=== Header ===-->
+		{% include '_partials/header.html' %}
+		<!--=== End Header ===-->
+
+        {% block content %}
+            <!--=== Slider ===-->
+            {% include '_partials/slider.html' %}
+            <!--=== End Slider ===-->
+
+            <!--=== Service Block ===-->
+            {% include '_partials/service.html' %}
+            <!--=== End Service Block ===-->
+
+            <!--=== About Block ===-->
+            {% include '_partials/about.html' %}
+            <!--=== End About Block ===-->
+
+            <!--=== Hostels ===-->
+            {% include '_partials/hostels.html' %}
+            <!--=== End Hostels ===-->
+
+            <!--=== Testimonials Section ===-->
+            {% include '_partials/testimonials.html' %}
+            <!--=== End Section ===-->
+        {% endblock %}
+
+        <!--=== Booking Section ===-->
+        {% include '_partials/booking_modal.html' %}
+        <!--=== End Section ===-->
+
+		<!--=== Footer Version 1 ===-->
+        {% include '_partials/footer.html' %}
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="{% static 'assets/plugins/back-to-top.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/smoothScroll.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js' %}"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="{% static 'assets/js/app.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/revolution-slider.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/forms/booking.js' %}"></script>
+
+    {% recaptcha_explicit_init %}
+
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			RevolutionSlider.initRSfullWidth();
+			BookingForm.initBookingForm();
+		});
+	</script>
+
+    {% block scripts %}
+    {% endblock %}
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'assets/plugins/respond.js' %}"></script>
+	<script src="{% static 'assets/plugins/html5shiv.js' %}"></script>
+	<script src="{% static 'assets/plugins/placeholder-IE-fixes.js' %}"></script>
+	<![endif]-->
+</body>
+</html>

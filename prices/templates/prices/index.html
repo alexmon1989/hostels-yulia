@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load seo %}
+{% get_metadata as my_meta %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">
+                {% if my_meta.heading.value %}
+                    {{ my_meta.heading.value }}
+                {% else %}
+                    Цены
+                {% endif %}
+            </h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li class="active">Цены</li>
+            </ul>
+        </div><!--/container-->
+    </div>
+
+    {% for hostel in hostels %}
+        <div class="container content-sm">
+            <div class="headline-center-v2 headline-center-v2-dark margin-bottom-30">
+                <h2>{{ hostel.title }}</h2>
+                <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+                <p><a href="{% url 'hostels:hostel_details' slug=hostel.slug %}">Страница хостела</a></p>
+            </div><!--/Headline Center v2-->
+
+            <div class="row no-space-pricing pricing-zoom">
+                {% for price in hostel.price_set.all %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="pricing">
+                            <div class="pricing-head">
+                                <h3>{{ price.title }}</h3>
+                                <h4>{{ price.value }}<i>.00 грн</i></h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'assets/css/pages/page_pricing.css' %}">
+{% endblock %}

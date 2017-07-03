@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load seo %}
+{% get_metadata as my_meta %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">
+                {% if my_meta.heading.value %}
+                    {{ my_meta.heading.value }}
+                {% else %}
+                    Новости
+                {% endif %}
+            </h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li class="active">Новости</li>
+            </ul>
+        </div><!--/container-->
+    </div>
+
+    <div class="container content-md">
+
+        {% for news in news_list %}
+
+            <div class="row margin-bottom-20">
+                <div class="col-sm-5 sm-margin-bottom-20">
+                    {% if news.image %}
+                        <img class="img-responsive" src="{{ news.image.url }}" alt="">
+                    {% else %}
+                        <img class="img-responsive" src="http://via.placeholder.com/458x289?text=hostel-yulia.com.ua" alt="">
+                    {% endif %}
+                </div>
+                <div class="col-sm-7">
+                    <div class="news-v3">
+                        <ul class="list-inline posted-info">
+                            <li>Создано {{ news.created_at }}</li>
+                        </ul>
+                        <h2><a href="{% url 'news:news_detail' pk=news.pk %}">{{ news.title }}</a></h2>
+                        <p>{{ news.short_text|safe }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix margin-bottom-20"><hr></div>
+
+        {% endfor %}
+
+        {% if is_paginated %}
+            <ul class="pager pager-v3 pager-md no-margin-bottom">
+                {% if page_obj.has_previous %}
+                    <li class="previous"><a href="?page={{ page_obj.previous_page_number }}">← Старее</a></li>
+                {% endif %}
+
+                <li class="page-amount">{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</li>
+
+                {% if page_obj.has_next %}
+                    <li class="next"><a href="?page={{ page_obj.next_page_number }}">Новее →</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<div class="bg-color-light margin-bottom-60">
+    <div class="container content-md">
+        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-60">
+            <h2>Отзывы</h2>
+            <span class="bordered-icon"><i class="fa fa-th-large"></i></span>
+            <p class="font-bold">Что о нас говорят наши гости?</p>
+            <p><a href="{% url 'feedbacks:feedback_index' %}">Все отзывы</a></p>
+        </div><!--/Headline Center v2-->
+
+        <div class="row">
+            {% for feedback in feedbacks %}
+                <div class="col-sm-6">
+                    <div class="testimonials-v4 md-margin-bottom-50">
+                        <div class="testimonials-v4-in">
+                            <p>{{ feedback.text }}</p>
+                        </div>
+                        <img class="rounded-x" src="{{ feedback.image.url }}" alt="thumb">
+                        <span class="testimonials-author">
+                            {{ feedback.client_name }}<br>
+                            <em>{{ feedback.position }}</em>
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div><!--/end container-->
+</div>
