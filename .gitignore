@@ -99,3 +99,4 @@ ENV/
 /media/
 /static/
 /.idea/
+/hostels_site/settings.py
