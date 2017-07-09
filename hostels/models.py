@@ -45,6 +45,7 @@ class Hostel(models.Model):
         return reverse('hostels:hostel_details', args=[str(self.slug)])
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Хостел'
         verbose_name_plural = 'Список хостелов'
 

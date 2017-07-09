@@ -18,8 +18,17 @@ from django.contrib import admin
 from home.views import index
 from django.conf import settings
 from django.conf.urls.static import static
+from hostels_site.sitemap import StaticSitemap, NewsSitemap, HostelsSitemap
+from django.contrib.sitemaps.views import sitemap
 
 handler404 = 'home.views.error_404'
+
+
+sitemaps = {
+    'static': StaticSitemap,
+    'news': NewsSitemap,
+    'hostels': HostelsSitemap,
+}
 
 urlpatterns = [
     url(r'^$', index, name='home'),
@@ -29,6 +38,7 @@ urlpatterns = [
     url(r'^feedback/', include('feedbacks.urls')),
     url(r'^contacts/', include('contacts.urls')),
     url(r'^booking/', include('booking.urls')),
+    url(r'^sitemap.xml$', sitemap, {'sitemaps': sitemaps}),
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -38,4 +48,3 @@ if settings.DEBUG:
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
-
