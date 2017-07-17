@@ -25,7 +25,7 @@ def create_booking(request):
                 'message': request.POST['message'],
             }
         )
-        mail_managers('Сообщение клиента с сайта', '', fail_silently=False, html_message=html_message)
+        mail_managers('Бронирование клиента с сайта', '', fail_silently=False, html_message=html_message)
 
         return JsonResponse({'success': 1})
     else:
