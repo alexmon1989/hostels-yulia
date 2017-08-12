@@ -48,3 +48,14 @@ class Footer(models.Model):
     class Meta:
         verbose_name = 'Подвал (footer)'
         verbose_name_plural = 'Подвал (footer)'
+
+
+class GoogleAnalyticsCode(models.Model):
+    code = models.TextField('Код HTML')
+
+    def __str__(self):
+        return 'Код HTML Google Analytics'
+
+    class Meta:
+        verbose_name = 'Google Analytics (HTML код)'
+        verbose_name_plural = 'Google Analytics (HTML код)'

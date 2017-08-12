@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load seo %}
 {% load recaptcha2 %}
+{% load home_extras %}
 {% get_metadata as my_meta %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="ru" class="ie8"> <![endif]-->
@@ -128,5 +129,7 @@
 	<script src="{% static 'assets/plugins/html5shiv.js' %}"></script>
 	<script src="{% static 'assets/plugins/placeholder-IE-fixes.js' %}"></script>
 	<![endif]-->
+
+    {% google_analytics_html %}
 </body>
 </html>
