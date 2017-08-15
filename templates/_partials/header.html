@@ -1,73 +1,86 @@
 {% load staticfiles %}
-<div class="header">
-    <div class="container">
-        <!-- Logo -->
-        <a class="logo" href="{% url 'home' %}">
-            <img src="{% static 'assets/img/logo1-default.png' %}" alt="Logo">
-        </a>
-        <!-- End Logo -->
-
-        <!-- Toggle get grouped for better mobile display -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="fa fa-bars"></span>
-        </button>
-        <!-- End Toggle -->
-    </div><!--/end container-->
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+{% load home_extras %}
+<div class="header-v1">
+    <!-- Topbar -->
+    <div class="topbar-v1">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <!-- Главная -->
-                <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}">
-                    <a href="{% url 'home' %}">Главная</a>
-                </li>
-                <!-- End Главная -->
+            <div class="row">
+                <div class="col-md-12">
+                    {% header_contacts %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Topbar -->
 
-                <!-- Новости -->
-                <li class="{% if request.resolver_match.url_name == "news_index" or request.resolver_match.url_name == "news_detail" %}active{% endif %}">
-                    <a href="{% url 'news:news_index' %}">Новости</a>
-                </li>
-                <!-- End Новости -->
+    <!-- Navbar -->
+    <div class="navbar navbar-default mega-menu" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'assets/img/logo1-default.png' %}" alt="Сеть хостелов hostel-yulia.kiev.ua">
+                </a>
+            </div>
 
-                <!-- Наши хостелы -->
-                <li class="dropdown {% if request.resolver_match.url_name == "hostel_details" %}active{% endif %}">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        Наши хостелы
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'hostels:hostel_details' slug='hotkevicha' %}">Хоткевича, 13</a></li>
-                        <li><a href="{% url 'hostels:hostel_details' slug='magnitogorskaya' %}">Магнитогорская, 1</a></li>
-                        <li><a href="{% url 'hostels:hostel_details' slug='bubnova' %}">Бубнова, 10</a></li>
-                    </ul>
-                </li>
-                <!-- End Наши хостелы -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Главная -->
+                    <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}">
+                        <a href="{% url 'home' %}">Главная</a>
+                    </li>
+                    <!-- End Главная -->
 
-                <!-- Цены -->
-                <li class="{% if request.resolver_match.url_name == "prices_index" %}active{% endif %}">
-                    <a href="{% url 'prices:prices_index' %}">Цены</a>
-                </li>
-                <!-- End Цены -->
+                    <!-- Новости -->
+                    <li class="{% if request.resolver_match.url_name == "news_index" or request.resolver_match.url_name == "news_detail" %}active{% endif %}">
+                        <a href="{% url 'news:news_index' %}">Новости</a>
+                    </li>
+                    <!-- End Новости -->
 
-                <!-- Отзывы -->
-                <li class="{% if request.resolver_match.url_name == "feedback_index" %}active{% endif %}">
-                    <a href="{% url 'feedbacks:feedback_index' %}">Отзывы</a>
-                </li>
-                <!-- End Отзывы -->
+                    <!-- Наши хостелы -->
+                    <li class="dropdown {% if request.resolver_match.url_name == "hostel_details" %}active{% endif %}">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            Наши хостелы
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'hostels:hostel_details' slug='hotkevicha' %}">Хоткевича, 13</a></li>
+                            <li><a href="{% url 'hostels:hostel_details' slug='magnitogorskaya' %}">Магнитогорская, 1</a></li>
+                            <li><a href="{% url 'hostels:hostel_details' slug='bubnova' %}">Бубнова, 10</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Наши хостелы -->
 
-                <!-- Контакты -->
-                <li class="{% if request.resolver_match.url_name == "contacts_index" %}active{% endif %}">
-                    <a href="{% url 'contacts:contacts_index' %}">Контакты</a>
-                </li>
-                <!-- End Контакты -->
+                    <!-- Цены -->
+                    <li class="{% if request.resolver_match.url_name == "prices_index" %}active{% endif %}">
+                        <a href="{% url 'prices:prices_index' %}">Цены</a>
+                    </li>
+                    <!-- End Цены -->
 
-                <!-- Заброонировать -->
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#responsive">Забронировать</a>
-                </li>
-                <!-- End Заброонировать -->
-            </ul>
-        </div><!--/end container-->
-    </div><!--/navbar-collapse-->
+                    <!-- Отзывы -->
+                    <li class="{% if request.resolver_match.url_name == "feedback_index" %}active{% endif %}">
+                        <a href="{% url 'feedbacks:feedback_index' %}">Отзывы</a>
+                    </li>
+                    <!-- End Отзывы -->
+
+                    <!-- Контакты -->
+                    <li class="{% if request.resolver_match.url_name == "contacts_index" %}active{% endif %}">
+                        <a href="{% url 'contacts:contacts_index' %}">Контакты</a>
+                    </li>
+                    <!-- End Контакты -->
+
+                    <!-- Заброонировать -->
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#responsive">Забронировать</a>
+                    </li>
+                    <!-- End Заброонировать -->
+                </ul>
+            </div><!--/navbar-collapse-->
+        </div>
+    </div>
+    <!-- End Navbar -->
 </div>

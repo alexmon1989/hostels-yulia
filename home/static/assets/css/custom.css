@@ -133,3 +133,7 @@ a {
     margin-top: 6px;
     padding: 0 1px;
 }
+
+.top-v1-contacts a {
+	font-weight: bold;
+}

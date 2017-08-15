@@ -1,5 +1,5 @@
 from django import template
-from home.models import Footer, GoogleAnalyticsCode
+from home.models import Footer, GoogleAnalyticsCode, Header
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -21,3 +21,9 @@ def footer_text():
 def footer_telephones():
     footer = Footer.objects.get()
     return mark_safe(footer.telephones)
+
+
+@register.simple_tag
+def header_contacts():
+    header, created = Header.objects.get_or_create()
+    return mark_safe(header.code)
