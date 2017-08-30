@@ -6,14 +6,11 @@
     text-transform: none;
 }
 
-.header .navbar-toggle,
-.header .navbar-toggle:hover,
-.header .navbar-toggle:focus {
-	background: #09a047;
+.header-v1 .navbar-default .navbar-nav > .active > a, .header-v1 .navbar-default .navbar-nav > li > a:hover, .header-v1 .navbar-default .navbar-nav > li > a:focus {
+    color: #09a047;
 }
-
-.header .navbar-nav > .active > a {
-	color: #09a047;
+.header-v1 .dropdown-menu {
+    border-color: #09a047 currentcolor #687074;
 }
 /*--------------------------------------------------
     [3. Header - Responsive Navbar Style]

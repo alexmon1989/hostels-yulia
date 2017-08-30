@@ -87,15 +87,15 @@
 
 	<link rel="stylesheet" href="{% static 'assets/css/app.css' %}">
 
+    {% block styles %}
+    {% endblock %}
+
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
 
     {% endcompress %}
 
 	<!--[if lt IE 9]><link rel="stylesheet" href="{% static 'assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css' %}" type="text/css" media="screen"><![endif]-->
-
-    {% block styles %}
-    {% endblock %}
 
     {% compress js %}
 
