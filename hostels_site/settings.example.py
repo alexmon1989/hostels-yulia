@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'booking',
     'djangoseo',
     'snowpenguin.django.recaptcha2',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -142,6 +143,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "home", "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
@@ -160,6 +166,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_SUBJECT_PREFIX = '[hostel-yulia.com.ua] '
 SERVER_EMAIL = 'a.monastyretsky@ukrpatent.org'
 
+ADMINS = [('Юлия', 'alex.mon1989@gmail.com'), ]
 MANAGERS = [('Юлия', 'alex.mon1989@gmail.com'), ]
 
 ADMIN_SHORTCUTS = [
@@ -184,3 +191,27 @@ SITE_ID = 1
 
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_PUBLIC_KEY = ''
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
+]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'path/to/debug.log',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
