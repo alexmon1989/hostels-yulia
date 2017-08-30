@@ -24,6 +24,42 @@
 </head>
 
 <body>
+	<div class="wrapper page-option-v1">
+		<!--=== Header ===-->
+		{% include '_partials/header.html' %}
+		<!--=== End Header ===-->
+
+        {% block content %}
+            <!--=== Slider ===-->
+            {% include '_partials/slider.html' %}
+            <!--=== End Slider ===-->
+
+            <!--=== Service Block ===-->
+            {% include '_partials/service.html' %}
+            <!--=== End Service Block ===-->
+
+            <!--=== About Block ===-->
+            {% include '_partials/about.html' %}
+            <!--=== End About Block ===-->
+
+            <!--=== Hostels ===-->
+            {% include '_partials/hostels.html' %}
+            <!--=== End Hostels ===-->
+
+            <!--=== Testimonials Section ===-->
+            {% include '_partials/testimonials.html' %}
+            <!--=== End Section ===-->
+        {% endblock %}
+
+        <!--=== Booking Section ===-->
+        {% include '_partials/booking_modal.html' %}
+        <!--=== End Section ===-->
+
+		<!--=== Footer Version 1 ===-->
+        {% include '_partials/footer.html' %}
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
     <!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
@@ -60,42 +96,6 @@
 
     {% block styles %}
     {% endblock %}
-
-	<div class="wrapper page-option-v1">
-		<!--=== Header ===-->
-		{% include '_partials/header.html' %}
-		<!--=== End Header ===-->
-
-        {% block content %}
-            <!--=== Slider ===-->
-            {% include '_partials/slider.html' %}
-            <!--=== End Slider ===-->
-
-            <!--=== Service Block ===-->
-            {% include '_partials/service.html' %}
-            <!--=== End Service Block ===-->
-
-            <!--=== About Block ===-->
-            {% include '_partials/about.html' %}
-            <!--=== End About Block ===-->
-
-            <!--=== Hostels ===-->
-            {% include '_partials/hostels.html' %}
-            <!--=== End Hostels ===-->
-
-            <!--=== Testimonials Section ===-->
-            {% include '_partials/testimonials.html' %}
-            <!--=== End Section ===-->
-        {% endblock %}
-
-        <!--=== Booking Section ===-->
-        {% include '_partials/booking_modal.html' %}
-        <!--=== End Section ===-->
-
-		<!--=== Footer Version 1 ===-->
-        {% include '_partials/footer.html' %}
-		<!--=== End Footer Version 1 ===-->
-	</div><!--/wrapper-->
 
     {% compress js %}
 
