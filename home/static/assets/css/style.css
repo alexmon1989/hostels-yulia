@@ -6,13 +6,6 @@
  * Website: http://htmlstream.com
 */
 
-/*Import Global Compulsory CSS Files*/
-@import url(app.css);
-@import url(blocks.css);
-
-/*Import CSS Plugins*/
-@import url(plugins/style-switcher.css);
-
 * {
 	border-radius: 0;
 }
