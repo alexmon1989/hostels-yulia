@@ -479,3 +479,7 @@ a {
 .margin-top-10 {
 	margin-top: 10px;
 }
+
+.navbar-header .menu {
+	color: #fff;
+}
