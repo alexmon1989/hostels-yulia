@@ -460,3 +460,7 @@ a {
 .top-v1-contacts a {
 	font-weight: bold;
 }
+
+@media only screen and (max-width: 479px) {
+   .mobile-hide{ display: none !important; }
+}
