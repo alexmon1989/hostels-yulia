@@ -1,0 +1,11 @@
+<div class="purchase visible-xs">
+    <div class="container overflow-h">
+        <div class="row">
+            {% for hostel in hostels %}
+                <div class="col-sm-4 col-xs-4 text-center">
+                    <span><a class="read-more" href="{% url "hostels:hostel_details" slug=hostel.slug %}">{{ hostel.title }}</a></span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

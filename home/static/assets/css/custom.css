@@ -461,6 +461,17 @@ a {
 	font-weight: bold;
 }
 
-@media only screen and (max-width: 479px) {
-   .mobile-hide{ display: none !important; }
+.purchase {
+    padding: 10px 0 10px;
+}
+
+.purchase span {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 0;
+}
+
+.purchase span a{
+	color: #096e37;
+	font-weight: bold;
 }
